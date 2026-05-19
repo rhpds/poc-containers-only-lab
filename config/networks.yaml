@@ -1,0 +1,4 @@
+---
+# Networks configuration (not used by containers, but included for completeness)
+
+networks: []

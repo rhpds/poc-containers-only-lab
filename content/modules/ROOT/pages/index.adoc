@@ -1,0 +1,57 @@
+= Container-Only Lab - Proof of Concept
+
+== Welcome
+
+This is a proof-of-concept lab testing container-only deployment (no VMs).
+
+*Research Goal:* Determine if simple RHEL content can run in containers instead of KubeVirt VMs for faster boot times and lower resource overhead.
+
+== Lab Environment
+
+* *Container:* UBI9 (Universal Base Image 9)
+* *Tools Installed:* vim, tmux, git, python3
+* *Terminal Access:* In-pod bash (not SSH)
+
+== What's Different
+
+[cols="2*", options="header"]
+|===
+|VM Labs
+|Container Labs
+
+|Boot time: 2-5 minutes
+|Boot time: 15-45 seconds
+
+|Memory overhead: 1.5-2GB
+|Memory overhead: 100-200MB
+
+|SSH access via wetty
+|In-pod terminal
+
+|Full systemd support
+|No systemd (container runtime)
+
+|Multiple nodes via SSH
+|Single container
+|===
+
+== Test Instructions
+
+. Open the Terminal tab
+. Verify RHEL version: `cat /etc/redhat-release`
+. Check installed packages: `rpm -qa | wc -l`
+. Test Python: `python3 --version`
+
+== Expected Results
+
+✅ Container starts in < 30 seconds
+✅ Terminal accessible via `/terminal_shell`
+✅ Common RHEL tools available
+✅ Resource usage < 500MB memory
+
+== Known Limitations
+
+* No systemd (cannot use `systemctl`)
+* No SSH between nodes
+* Ephemeral storage (no persistent /home)
+* Cannot test kernel modules or network configuration

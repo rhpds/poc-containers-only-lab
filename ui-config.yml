@@ -1,0 +1,14 @@
+---
+# UI configuration for containers-only proof of concept
+
+name: Container-Only Lab (PoC)
+description: Proof of concept testing containers without VMs
+
+tabs:
+  - name: Terminal
+    type: terminal
+    url: /terminal_shell  # Container terminal (not /wetty_)
+    external: false
+
+# No browser tabs since we don't have services running
+# This is just a test of container deployment mechanics

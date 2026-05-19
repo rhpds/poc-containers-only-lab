@@ -1,0 +1,21 @@
+---
+# Minimal firewall config for containers-only lab
+# Containers don't need egress rules the same way VMs do
+
+egress:
+  # Allow DNS (required for image pull)
+  - to_ports:
+      - 53
+    protocol: UDP
+
+  # Allow HTTPS for package installs
+  - to_ports:
+      - 443
+    protocol: TCP
+
+  # Allow HTTP for package repos
+  - to_ports:
+      - 80
+    protocol: TCP
+
+ingress: []
