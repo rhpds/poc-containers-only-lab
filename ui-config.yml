@@ -7,7 +7,7 @@ description: Proof of concept testing containers without VMs
 tabs:
   - name: Terminal
     type: terminal
-    url: /terminal_shell  # Container terminal (not /wetty_)
+    url: /shell  # Showroom pod terminal with oc CLI
     external: false
 
 # No browser tabs since we don't have services running

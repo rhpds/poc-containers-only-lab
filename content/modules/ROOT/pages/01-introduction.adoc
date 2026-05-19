@@ -4,24 +4,83 @@
 
 This is a proof-of-concept lab demonstrating container-based deployment without KubeVirt VMs.
 
+*Key validation points:*
+
+* ✅ No VMs provisioned (virtualmachines: [])
+* ✅ Container deployment via instances.yaml
+* ✅ Faster provisioning (~60s vs 4-6min for VMs)
+* ✅ Lower resource consumption
+* ✅ Browser terminal access via Showroom
+
 == Lab Environment
 
-The lab provides a RHEL 9 container environment accessible via browser terminal.
+The lab includes:
 
-== Getting Started
+* **rhel-shell pod**: RHEL 9 UBI container (target environment)
+* **showroom pod**: Lab UI with terminal access
 
-Click the *Terminal* tab to access the RHEL shell.
+== Accessing the RHEL Container
 
-Verify the container environment:
+Click the *Terminal* tab. This opens a bash shell in the Showroom pod with `oc` CLI access.
+
+To access the RHEL container, run:
+
+[source,bash]
+----
+oc exec -it rhel-shell -- /bin/bash
+----
+
+Once inside the rhel-shell container, verify the environment:
+
 [source,bash]
 ----
 cat /etc/redhat-release
 id
+pwd
 ----
 
-This PoC validates:
+Expected output:
+----
+Red Hat Enterprise Linux release 9.7 (Plow)
+uid=1004760000 gid=0(root) groups=0(root),1004760000
+/
+----
 
-* Container-only deployment (no VMs)
-* Faster provisioning (~60s vs 4-6min)
-* Lower resource consumption
-* Browser terminal access via showroom
+To return to the Showroom terminal:
+----
+exit
+----
+
+== PoC Validation
+
+This deployment demonstrates:
+
+[cols="1,1,1"]
+|===
+|Metric |VM-based Labs |Container-only PoC
+
+|Infrastructure deployment
+|60-120s (KubeVirt VM boot)
+|4-6s (container start)
+
+|Total deployment time
+|4-6 minutes
+|~60 seconds
+
+|Resource overhead
+|2Gi+ memory per VM
+|<10Mi per container
+
+|QoS class
+|Burstable (VM)
+|Guaranteed (container)
+|===
+
+== Next Steps
+
+This PoC validates the technical feasibility of container-only labs. Production implementation would require:
+
+1. Pre-built container images with lab tools installed
+2. Terminal sidecar for direct container access (not via oc exec)
+3. Lab content optimized for container environment
+4. Resource quota tuning for container density
