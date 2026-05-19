@@ -1,0 +1,27 @@
+= Container-Only Lab PoC
+
+== Overview
+
+This is a proof-of-concept lab demonstrating container-based deployment without KubeVirt VMs.
+
+== Lab Environment
+
+The lab provides a RHEL 9 container environment accessible via browser terminal.
+
+== Getting Started
+
+Click the *Terminal* tab to access the RHEL shell.
+
+Verify the container environment:
+[source,bash]
+----
+cat /etc/redhat-release
+id
+----
+
+This PoC validates:
+
+* Container-only deployment (no VMs)
+* Faster provisioning (~60s vs 4-6min)
+* Lower resource consumption
+* Browser terminal access via showroom

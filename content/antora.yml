@@ -1,6 +1,9 @@
-name: poc-containers-only
-title: Container-Only Lab Proof of Concept
-version: main
-start_page: index.adoc
-nav:
-  - modules/ROOT/nav.adoc
+---
+name: modules
+version: master
+
+asciidoc:
+  attributes:
+    lab_name: "Container-Only Lab PoC"
+    release-version: master
+    page-pagination: true
