@@ -19,18 +19,8 @@ containers:
       - name: shell
         command: /bin/bash
     commands:
-      # Install common RHEL tools
-      - |
-        dnf install -y \
-          vim-enhanced \
-          tmux \
-          git \
-          python3 \
-          python3-pip \
-          bash-completion \
-          && dnf clean all
-      # Create lab user
-      - |
-        useradd -m -s /bin/bash rhel
-        echo "rhel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-        echo "Container ready: RHEL $(cat /etc/redhat-release)"
+      # Verification commands (non-root)
+      - echo "Container started successfully"
+      - cat /etc/redhat-release
+      - id
+      - echo "PoC container ready for terminal access"
