@@ -9,13 +9,9 @@ containers:
   - name: rhel
     image: quay.io/rhn_support_wharris/rhel-lab-tools:v1.1.0-file-permissions
     command: ['sleep', 'infinity']
-    resources:
-      requests:
-        cpu: "500m"
-        memory: "512Mi"
-      limits:
-        cpu: "1"
-        memory: "1Gi"
+    cpu: "1"
+    memory: "1Gi"
+    environment: {}
     ports:
       - name: http
         containerPort: 8080
