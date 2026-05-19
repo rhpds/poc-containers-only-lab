@@ -1,13 +1,13 @@
 ---
 # Container Conversion: zt-using-file-permissions
 # Converted from VM-based lab to container-based lab
-# Image: rhel-lab-tools:v1.1.0 (includes coreutils, findutils, shadow-utils)
+# Image: rhel-lab-tools:v1.1.0-file-permissions (base tools + lab setup pre-configured)
 
 virtualmachines: []  # Empty - no VMs
 
 containers:
   - name: rhel
-    image: quay.io/rhn_support_wharris/rhel-lab-tools:v1.1.0
+    image: quay.io/rhn_support_wharris/rhel-lab-tools:v1.1.0-file-permissions
     command: ['sleep', 'infinity']
     resources:
       requests:
