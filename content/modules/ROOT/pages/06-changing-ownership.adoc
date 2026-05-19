@@ -1,0 +1,89 @@
+=== Changing file ownership
+
+Sometimes it is useful to change who owns a file so that permissions can align with the purpose of the file. The chown command can do this very easily. Just specify the new owner and the file you would like to change.
+
+From the *>_ root* terminal confirm that *root* is the initial owner of the file
+*tasks.txt*:
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+ls -l tasks.txt
+----
+
+.Output
+[source,text]
+----
+-rwxr-x---. 1 root root 128 Mar  5 22:00 tasks.txt
+----
+
+The third and fourth column of this output are the user and group that
+own the file. Right now, *root* is the owner in both cases.
+
+.thirdfourth
+image::thirdandfourthcolumn-zt-root.png[thirdfourth]
+
+Switch to the *>_ rhel* terminal in the bottom pane and attempt to read the
+file:
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+cat tasks.txt
+----
+
+.Output
+[source,text]
+----
+cat: tasks.txt: Permission denied
+----
+
+This read operation is denied, as *rhel* does not have read permission.
+
+Return to the *>_ root* terminal.
+
+Change the user that owns *tasks.txt* to *rhel*:
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+chown rhel tasks.txt
+----
+
+This command has no expected output.
+
+Return to the *>_rhel* terminal.
+
+Run the following command.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+ls -l tasks.txt
+----
+
+.Output
+[source,text]
+----
+-rwxr-x---. 1 rhel root 117 Jun  2 23:01 tasks.txt
+----
+
+Now that *rhel* owns the file instead of *root*, this user has
+permission to read the file without reconfiguring the access modes.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+cat tasks.txt
+----
+
+.Output
+[source,text]
+----
+1. Finish this Permissions Lab
+2. Do the Networking Configuration Basics Lab
+3. Listen to the latest episode of RHEL Presents
+----
+
+The fourth column of the `*ls -l*` output is the group which owns the
+file. The next step will walk you through changing group ownership.

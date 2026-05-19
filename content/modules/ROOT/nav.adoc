@@ -1,2 +1,0 @@
-* xref:index.adoc[Welcome]
-* xref:container-basics.adoc[Container Basics]

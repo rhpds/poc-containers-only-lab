@@ -1,25 +1,32 @@
 ---
-# UI configuration for containers-only proof of concept
+# UI configuration for zt-using-file-permissions (container conversion)
 
-name: Container-Only Lab (PoC)
-description: Proof of concept testing containers without VMs
+name: Using File Permissions
+description: Learn RHEL file permissions, ownership, and chmod/chown commands
 
 antora:
   name: modules
   dir: www
   modules:
-    - name: "index"
-      label: "Overview"
-    - name: "01-introduction"
-      label: "Introduction"
-    - name: "container-basics"
-      label: "Container Basics"
+    - name: "01-what-are-file-permissions"
+      label: "What Are File Permissions"
+    - name: "02-interacting-with-different-users"
+      label: "Interacting with Different Users"
+    - name: "03-chmod-command"
+      label: "The chmod Command"
+    - name: "04-modifying-permissions"
+      label: "Modifying Permissions"
+    - name: "05-modifying-absolute"
+      label: "Modifying Absolute Permissions"
+    - name: "06-changing-ownership"
+      label: "Changing Ownership"
+    - name: "07-changing-group-ownership"
+      label: "Changing Group Ownership"
+    - name: "08-find-audit-permissions"
+      label: "Find and Audit Permissions"
 
 tabs:
   - name: Terminal
     type: terminal
-    url: /shell  # Showroom pod terminal with oc CLI
+    url: /shell
     external: false
-
-# No browser tabs since we don't have services running
-# This is just a test of container deployment mechanics

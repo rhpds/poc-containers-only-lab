@@ -1,0 +1,84 @@
+=== Changing permissions (absolute)
+
+Now your next goal is to modify the permissions on status.sh to keep full access for the owner and group members, but prevent anyone else from writing to or executing the file. You can do this with three numbers if you use the absolute syntax.
+
+The number you would use to do this with chmod is 774. The image below explains how the absolute permission of 774 relates to the access mode string that is output by ls -l.
+
+.chmod 774
+image::chmod774.png[chmod 774]
+
+The owner user and owner group will have full permissions, but others
+will only be able to read the file.
+
+Return to *>_root* terminal.
+
+Use `*chmod*` to modify the permissions on *status.sh* as previously
+discussed.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+chmod 774 status.sh
+----
+
+This command has no expected output.
+
+Confirm that this change has succeeded by checking the access mode for
+*status.sh*
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+ls -l status.sh
+----
+
+.Output
+[source,text]
+----
+-rwxrwxr--. 1 root root  66 Jun  2 22:42 status.sh
+----
+
+Go back to the *>_ rhel* terminal.
+
+Verify that you do not have permission to execute the status script as
+*rhel*:
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+./status.sh
+----
+
+.Output
+[source,text]
+----
+-bash: ./status.sh: Permission denied
+----
+
+However, if you try to read this file, you will see you do have read
+access as *rhel*:
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+cat status.sh
+----
+
+.Output
+[source,text]
+----
+#! /bin/bash
+echo -n "status.sh successfully executed by "
+whoami
+----
+
+NOTE: You can use `*vi*` or any other write command to verify that you
+do not have write access as *rhel* if you wish to verify this as well.
+
+Many users default to absolute permissions because of how much quicker
+they are to type. If you are still unsure exactly what these commands
+are doing, please check out the "`How do I manage permissions?`" section
+of https://www.redhat.com/sysadmin/manage-permissions[this Enable
+Sysadmin article^] to learn more.
+
+The next step will walk you through changing which user owns a file.

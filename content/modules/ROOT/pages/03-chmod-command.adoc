@@ -1,0 +1,21 @@
+=== The chmod Command
+
+The chmod command is how you modify the permissions associated with files and directories.
+The chmod command has two different ways to modify permissions: symbolic and absolute.
+
+Symbolic permissions have the same format as the access mode output of `ls -l`.
+In this mode, you use the characters r, w, and x to set the read, write, and execute permissions.
+
+The other mode, absolute, instead uses a series of three numbers to correspond to
+the permissions for the owner, group, and others. These numbers are identical in
+meaning to the symbolic mode breakdown, they are just more compact and therefore quicker to type.
+Here is an example of how the two modes relate from Boolean World:
+
+.symbolicandnumeric
+image::symbolicandnumeric.png[Permission Breakdown]
+
+NOTE: This image refers to absolute mode as numeric mode. These two terms are interchangeable and you will commonly see both.
+
+The crucial takeaway is that each character in a symbolic permission can be converted to a binary number, 1 if the user has that permission and 0 if the user does not. These three binary numbers become a single octal digit, and three such octal digits compose an absolute representation of the file's permissions.
+
+The upcoming sections walk through a examples of changing permissions using each of these two modes.

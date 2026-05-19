@@ -1,0 +1,67 @@
+=== Interacting with a file from different user accounts
+
+Recall from the previous step that *status.sh* has the following
+permissions:
+
+.Output
+[source,text]
+----
+-rwxr-x---
+----
+
+Therefore, *root* has permission to execute this script. Run the script
+by copying and pasting the following into the terminal window.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+./status.sh
+----
+
+.Output
+[source,text]
+----
+status.sh successfully executed by root
+----
+
+Let’s focus on the permissions of `*status.sh*`.
+
+The first three letters of the access mode show that the owner of the
+file has full permissions, *rwx*, so the owner can read, write, and
+execute this file. See the image below.
+
+Users in the group that owns this file have *r-x*, so they can read and
+execute but cannot write to this file. See the image below.
+
+Finally, all other users have no permissions, *—*, so they are unable to
+read, write, or execute this file.
+
+Switch to the terminal labeled `*>_rhel*` and traverse into the `*/srv*` directory.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+cd /srv
+----
+
+This command has no expected output.
+
+Try executing the status script as *rhel*. Since the rhel account is
+not the user owner of the file and is not part of any owner groups, you
+are unable to execute this script from this user account.
+
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
+./status.sh
+----
+
+.Output
+[source,text]
+----
+-bash: ./status.sh: Permission denied
+----
+
+Now that you know how files behave differently when operated on by
+different user accounts, the next steps will show you how to customize
+permissions to control this behavior.

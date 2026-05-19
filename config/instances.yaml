@@ -1,26 +1,25 @@
 ---
-# Proof of Concept: Container-Only Lab (No VMs)
-# Tests if Showroom can deploy with containers instead of KubeVirt VMs
+# Container Conversion: zt-using-file-permissions
+# Converted from VM-based lab to container-based lab
+# Image: rhel-lab-tools:v1.1.0 (includes coreutils, findutils, shadow-utils)
 
 virtualmachines: []  # Empty - no VMs
 
 containers:
-  - name: rhel-shell
-    image: registry.redhat.io/ubi9/ubi:latest
+  - name: rhel
+    image: quay.io/rhn_support_wharris/rhel-lab-tools:v1.1.0
     command: ['sleep', 'infinity']
-    memory: 2Gi
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "512Mi"
+      limits:
+        cpu: "1"
+        memory: "1Gi"
     ports:
       - name: http
         containerPort: 8080
         protocol: TCP
-    environment:
-      LAB_USER: rhel
     terminals:
       - name: shell
-        command: oc exec -it rhel-shell -- /bin/bash
-    commands:
-      # Verification commands (non-root)
-      - echo "Container started successfully"
-      - cat /etc/redhat-release
-      - id
-      - echo "PoC container ready for terminal access"
+        command: oc exec -it rhel -- /bin/bash

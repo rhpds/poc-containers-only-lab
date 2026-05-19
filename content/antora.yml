@@ -4,6 +4,6 @@ version: master
 
 asciidoc:
   attributes:
-    lab_name: "Container-Only Lab PoC"
+    lab_name: "Use file permissions (Admin 101)"
     release-version: master
     page-pagination: true
