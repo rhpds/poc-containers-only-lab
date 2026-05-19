@@ -17,7 +17,7 @@ containers:
       LAB_USER: rhel
     terminals:
       - name: shell
-        command: /bin/bash
+        command: oc exec -it rhel-shell -- /bin/bash
     commands:
       # Verification commands (non-root)
       - echo "Container started successfully"
