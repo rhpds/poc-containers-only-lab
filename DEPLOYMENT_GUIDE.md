@@ -249,15 +249,21 @@ oc get networkpolicy -n $NAMESPACE -o yaml
 
 ### Terminal Not Accessible
 
+**See [NETWORKING_VERIFICATION.md](./NETWORKING_VERIFICATION.md) for complete terminal access details.**
+
 ```bash
 # Check nginx routing
-oc logs <showroom-pod> -n $NAMESPACE -c nginx | grep terminal_shell
+oc logs <showroom-pod> -n $NAMESPACE -c proxy | grep terminal_shell
 
-# Check wetty proxy
-oc logs <showroom-pod> -n $NAMESPACE -c wetty
+# Check terminal container exists
+oc get <showroom-pod> -n $NAMESPACE -o jsonpath='{.spec.containers[*].name}' | grep terminal-shell
 
 # Verify route exists
 oc get route showroom -n $NAMESPACE
+
+# Test WebSocket upgrade
+SHOWROOM_URL=$(oc get route showroom -n $NAMESPACE -o jsonpath='{.spec.host}')
+curl -i -N -H "Connection: Upgrade" -H "Upgrade: websocket" https://$SHOWROOM_URL/terminal_shell
 ```
 
 ### Image Pull Errors

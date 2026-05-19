@@ -1,8 +1,16 @@
 # Container-Only Lab - Proof of Concept
 
-**Status:** Experimental  
+**Status:** Ready for deployment testing  
 **Created:** 2026-05-18  
+**Last Updated:** 2026-05-19  
 **Purpose:** Test if Showroom can deploy labs using containers instead of KubeVirt VMs
+
+## Verification Status
+
+✅ **AgnosticD code verified** - `zero-touch-base-rhel` handles `virtualmachines: []` safely  
+✅ **Networking verified** - Terminal access routes confirmed in showroom-deployer  
+✅ **Resource limits configured** - Prevents BestEffort QoS and container eviction  
+⏳ **Awaiting deployment** - Ready when sandbox credentials received
 
 ## Research Question
 
@@ -18,7 +26,7 @@ Can short, targeted RHEL BU content be deployed in containers to achieve:
 | `virtualmachines:` | `[]` (empty) | 1-14 VMs |
 | `containers:` | 1 UBI9 container | 0-5 support containers (Gitea, Kafka) |
 | Terminal access | `/terminal_shell` (in-pod bash) | `/wetty_<vmname>` (SSH) |
-| AgnosticD role | TBD (may need new env_type) | `zero-touch-base-rhel` |
+| AgnosticD role | `zero-touch-base-rhel` (confirmed) | `zero-touch-base-rhel` |
 
 ## Directory Structure
 
@@ -184,6 +192,10 @@ Fill in after deployment:
 ## References
 
 - [Full Research Plan](../cursor-revisit/platform/containers-only-deployment-research-plan.md)
+- [AgnosticD Code Verification](../cursor-revisit/platform/agnosticd-containers-only-code-verification.md)
+- [Networking Verification](./NETWORKING_VERIFICATION.md) ✅ Terminal access verified
+- [Deployment Guide](./DEPLOYMENT_GUIDE.md)
+- [Quick Start](./QUICK_START.md)
 - [Container Guide](../rhdp-skills-marketplace/showroom/skills/create-zerotouch-lab/references/containers-guide.md)
 - [Showroom Authoring Reference](../cursor-revisit/platform/showroom-lab-authoring-reference.md)
 - [Zero-Touch Playbook Chain](../cursor-revisit/troubleshooting/concepts/rhdp-zt-agnosticd-zero-touch-base-rhel-playbook-chain.md)

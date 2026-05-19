@@ -1,4 +1,4 @@
 ---
-# Networks configuration (not used by containers, but included for completeness)
-
-networks: []
+# Default network exists by default
+# No secondary networks needed for container-only labs
+- name: default
