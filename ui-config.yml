@@ -4,6 +4,17 @@
 name: Container-Only Lab (PoC)
 description: Proof of concept testing containers without VMs
 
+antora:
+  name: modules
+  dir: www
+  modules:
+    - name: "index"
+      label: "Overview"
+    - name: "01-introduction"
+      label: "Introduction"
+    - name: "container-basics"
+      label: "Container Basics"
+
 tabs:
   - name: Terminal
     type: terminal
