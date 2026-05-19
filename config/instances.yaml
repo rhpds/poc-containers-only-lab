@@ -7,16 +7,16 @@ virtualmachines: []  # Empty - no VMs
 containers:
   - name: rhel-shell
     image: registry.redhat.io/ubi9/ubi:latest
-    resources:
-      limits:
-        cpu: 1000m
-        memory: 2Gi
-      requests:
-        cpu: 500m
-        memory: 1Gi
-    env:
-      - name: LAB_USER
-        value: rhel
+    memory: 2Gi
+    ports:
+      - name: http
+        containerPort: 8080
+        protocol: TCP
+    environment:
+      LAB_USER: rhel
+    terminals:
+      - name: shell
+        command: /bin/bash
     commands:
       # Install common RHEL tools
       - |
@@ -33,12 +33,3 @@ containers:
         useradd -m -s /bin/bash rhel
         echo "rhel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
         echo "Container ready: RHEL $(cat /etc/redhat-release)"
-    terminals:
-      - name: shell
-        command: /bin/bash
-    routes:
-      - name: container-test
-        host: container-test
-        targetPort: 8080
-        tls: true
-        tls_termination: edge
